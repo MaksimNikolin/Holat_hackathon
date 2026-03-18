@@ -1,0 +1,108 @@
+body {
+  background-color: #f3f4f6;
+  font-family: Arial, sans-serif;
+  color: #111827;
+}
+
+.home-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.schools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.school-card {
+  background-color: #e5e7eb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.school-name {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #1d4ed8;
+}
+
+.promises-list li.status-completed {
+  color: green;
+}
+
+.promises-list li.status-problem {
+  color: red;
+}
+
+.promises-list li.status-pending {
+  color: orange;
+}
+
+.report-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.report-form input[type="text"],
+.report-form select {
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #d1d5db;
+  font-size: 0.9rem;
+}
+
+.submit-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.4rem 0.6rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  align-self: flex-start;
+}
+
+.submit-button:hover {
+  background-color: #2563eb;
+}
+
+.photos-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.popup-title {
+  color: #1d4ed8;
+}
+
+.status-completed {
+  color: green;
+}
+
+.status-problem {
+  color: red;
+}
+
+.status-pending {
+  color: orange;
+}
