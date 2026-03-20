@@ -1,285 +1,49 @@
-# Real Holat — Платформа мониторинга общественной инфраструктуры гражданами
+# Real Holat — Civic Infrastructure Monitoring Platform
 
-**Real Holat** — это гражданская платформа, которая позволяет гражданам проверять, были ли реально выполнены обещания государства по улучшению инфраструктуры.
+**Real Holat** is a citizen platform for monitoring the fulfillment of government promises on infrastructure improvements, focusing on schools. Users can quickly submit reports with photos, and all data is displayed on a public dashboard in real time.
 
-Платформа позволяет быстро отправлять отчеты о проблемах в общественных объектах (например, школах) и предоставляет **прозрачный публичный дашборд** с обратной связью в реальном времени.
+## Problem
+The government invests in projects (school renovations, equipment, sanitary improvements), but there is no transparent way to verify completion. Citizen feedback often gets lost in bureaucracy and is not publicly visible.
 
-Проект создан в рамках **хакатона Real Holat**.
+**Example:** Soap dispensers promised in school toilets remain empty or broken, and there’s no simple way to report it officially.
 
----
+## Solution
+- Users can select a school, check promised improvements, and upload photos with comments.  
+- Reports are instantly published on a public dashboard.  
+- Promotes transparency, accountability, and public awareness.
 
-## Проблема
+**Key Features:**  
+- Map of schools with promises and photos (Leaflet.js)  
+- Citizen reports with photo and status (✔ Completed / ✖ Problem)  
+- Public dashboard with aggregated statistics  
 
-Государство тратит значительные средства на инфраструктурные проекты, такие как:
+## Architecture & Stack
+- **Backend:** Python + FastAPI  
+- **Frontend:** React  
+- **Database:** PostgreSQL  
+- **Map:** Leaflet.js  
 
-- Ремонт школ  
-- Улучшение санитарных условий  
-- Установка оборудования  
-- Обновление общественных объектов  
+**Project Structure:**  
+backend/ — FastAPI, models, services, API endpoints
+frontend/ — React, pages, components, map
+database/ — PostgreSQL schema
 
-Однако зачастую **нет прозрачного способа проверить**, действительно ли обещания выполнены.  
+Main database entities: Schools, Promises, Reports, Report_photos  
 
-Граждане, ежедневно пользующиеся этими объектами, видят реальное состояние, но их обратная связь:
+**Example API Endpoints:**  
+- `GET /schools/` — get list of schools  
+- `POST /reports/` — create a new report  
+- `GET /dashboard/stats` — get aggregated statistics  
 
-- теряется в бюрократии  
-- трудно передается официально  
-- не видна широкой общественности  
+## Running the Project
+**Backend**  
+```bash
+make backend
+```
+Backend available at: http://localhost:8000
 
-**Пример:**  
-Учитель обнаруживает, что государство обещало установить диспенсеры с мылом в школьных туалетах, но через два месяца они пусты или сломаны.  
-Нет простого способа сообщить об этом и сделать проблему видимой.
-
----
-
-## Наше решение
-
-**Real Holat** предоставляет гражданам простой инструмент для проверки инфраструктуры.  
-
-С помощью платформы гражданин может:
-
-1. Открыть приложение  
-2. Выбрать ближайшую школу  
-3. Проверить, какие улучшения были обещаны  
-4. Загрузить фото и сообщить о реальном состоянии  
-5. Мгновенно опубликовать отчет на **публичном дашборде**
-
-Это создаёт **прозрачность, ответственность и осведомлённость общества**.
-
----
-
-## Ключевые функции
-
-### Карта школ
-- Пользователи видят школы на карте  
-- Каждая школа отображает:
-  - название  
-  - расположение  
-  - фото  
-  - обещанные улучшения  
-- Карта реализована с использованием **Leaflet.js**
-
-### Обещанные улучшения
-- Для каждой школы показывается список улучшений, например:
-  - ремонт туалетов  
-  - установка диспенсеров с мылом  
-  - новые парты  
-- Граждане могут проверить, выполнены ли эти обещания
-
-### Отчёты граждан
-- Пользователи могут отправлять отчёт за несколько секунд:
-  - загрузить фото  
-  - добавить комментарий  
-  - отметить статус:  
-    - ✔ Выполнено  
-    - ✖ Проблема  
-- Отчёты становятся частью **публичной информации**
-
-### Публичный дашборд
-- Показывает агрегированные данные:
-  - количество проверенных школ  
-  - количество отправленных отчетов  
-  - процент удовлетворенности  
-  - школы с наибольшими проблемами  
-- Создает **прозрачную обратную связь** для граждан и властей
-
----
-
-## Технологический стек
-
-**Backend:** Python + FastAPI  
-- Высокопроизводительный API  
-- Автоматическая документация  
-- Простые асинхронные эндпоинты  
-- Чистая архитектура
-
-**Frontend:** React  
-- Интерактивный интерфейс:
-  - список школ  
-  - отправка отчетов  
-  - дашборд  
-  - визуализация карты
-
-**База данных:** PostgreSQL  
-- Хранит:
-  - школы  
-  - обещанные улучшения  
-  - отчёты граждан  
-  - загруженные фото
-
-**Карта:** Leaflet.js  
-- Отображает:
-  - школы на карте  
-  - маркеры статуса  
-  - интерактивное взаимодействие по локациям
-
----
-
-## Архитектура проекта
-
-```text
-frontend/
-    React приложение
-    компоненты
-    страницы
-    карта
-
-backend/
-    FastAPI приложение
-    API endpoints
-    сервисы
-    модели базы данных
-
-БД:
-database/
-    PostgreSQL схема
-
-Основные сущности базы данных
-Schools — список школ и их локации
-Promises — обещанные улучшения инфраструктуры
-Reports — отчёты граждан о проверках
-Report_photos — загруженные фото доказательства
-
-Пример отношений:
-School
-   └── Promises
-   └── Reports
-         └── Photos
-
-/dt
- Schema |     Name      | Type  |  Owner   
---------+---------------+-------+----------
- public | promises      | table | postgres
- public | report_photos | table | postgres
- public | reports       | table | postgres
- public | schools       | table | postgres
-
-Tables:
-
-schools:
- id |   name   | latitude  | longitude |         photo_url         
-----+----------+-----------+-----------+---------------------------
-  1 | School A | 41.300000 | 69.200000 | https://example.com/a.jpg
-  2 | School B | 41.400000 | 69.300000 | https://example.com/b.jpg
-
-promises:
- id | school_id |    description    |  status   
-----+-----------+-------------------+-----------
-  1 |         1 | Toilet renovation | Completed
-  2 |         1 | Soap dispensers   | Problem
-
-reports:
- id | school_id |  status   |                comment                 |         created_at         
-----+-----------+-----------+----------------------------------------+----------------------------
-  1 |         1 | Completed | Renovation finished successfully       | 2026-03-13 10:16:07.949303
-  2 |         1 | Problem   | Soap dispensers missing in 2 bathrooms | 2026-03-13 10:16:07.949303
-
-report_photos:
- id | report_id |                       photo_url                        
-----+-----------+--------------------------------------------------------
-  1 |         1 | https://example.com/photos/school45/toilet1.jpg
-
-Подключиться к БД:
-psql -h localhost -U ggang -d civiclens
-
-
-Примеры API (Эндпоинты):
-Метод	               Эндпоинт	                           Что делает
-GET	                 /schools/	                         Получить список всех школ
-GET	                 /schools/{id}	                     Получить информацию о конкретной школе и её обещаниях
-GET	                 /reports/	                         Получить список всех отчётов
-POST	               /reports/	                         Создать (отправить) новый отчёт
-GET	                 /reports/photos/{id}	               Получить список фото для отчёта с указанным id
-POST	               /reports/photos/	                   Загрузить новое фото для отчёта
-GET	                 /dashboard/stats	                   Получить статистику по всем отчётам (всего, завершено, с проблемами)
-GET	                 /dashboard/problematic_schools	     Получить список школ с проблемными отчётами и количество проблем
-
-
-Запуск проекта:
-Backend
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
-Backend доступен по адресу: http://localhost:8000
-
-Frontend
-cd frontend
-npm install
-npm start
-Frontend доступен по адресу: http://localhost:3000
-
-Будущие улучшения
-AI-анализ фото для автоматической проверки проблем
-Система репутации пользователей
-Голосование за подтверждение отчётов
-Интеграция с открытыми данными государства
-Мобильное приложение
-Видение
-Real Holat даёт гражданам прямой голос в мониторинге общественной инфраструктуры.
-Прозрачность ведёт к ответственности.
-Когда граждане могут проверять и делиться реальными данными, общественные услуги улучшаются для всех.
-
-Структура репозитория:
-civiclens/
-│
-├── backend/
-│   │
-│   ├── app/
-│   │   ├── main.py
-│   │   │
-│   │   ├── api/
-│   │   │   └── routes/
-│   │   │       ├── schools.py
-│   │   │       ├── reports.py
-│   │   │       └── dashboard.py
-│   │   │
-│   │   ├── models/
-│   │   │   ├── school.py
-│   │   │   ├── promise.py
-│   │   │   └── report.py
-│   │   │
-│   │   ├── schemas/
-│   │   │   ├── school.py
-│   │   │   ├── promise.py
-│   │   │   └── report.py
-│   │   │
-│   │   ├── services/
-│   │   │   ├── school_service.py
-│   │   │   └── report_service.py
-│   │   │
-│   │   └── db/
-│   │       ├── database.py
-│   │       └── init_db.py
-│   │
-│   ├── requirements.txt
-│   └── .env
-│
-├── frontend/
-│   │
-│   ├── package.json
-│   ├── public/
-│   │
-│   └── src/
-│       ├── components/
-│       │   ├── SchoolCard.jsx
-│       │   ├── ReportForm.jsx
-│       │   └── Map.jsx
-│       │
-│       ├── pages/
-│       │   ├── Home.jsx
-│       │   ├── SchoolPage.jsx
-│       │   └── Dashboard.jsx
-│       │
-│       ├── services/
-│       │   └── api.js
-│       │
-│       └── App.jsx
-│
-├── database/
-│   └── schema.sql
-│
-├── docker-compose.yml
-└── README.md
-
-Python 3.11
-Node 18+
-PostgreSQL
+**Frontend**
+```bash
+make frontend
+```
+Frontend available at: http://localhost:3000

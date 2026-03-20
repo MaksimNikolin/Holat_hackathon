@@ -17,12 +17,12 @@ function Home() {
         <h1 style={{ fontSize: "32px" }}>Real Holat — CivicLens</h1>
       </div>
 
-      {/* Карта */}
+      {}
       <div className="map-container" style={{ height: "400px", marginBottom: "40px" }}>
         <Map schools={schools} />
       </div>
 
-      {/* Список школ */}
+      {}
       <div>
         <h2>Organizations List</h2>
         {schools.map((school) => (
