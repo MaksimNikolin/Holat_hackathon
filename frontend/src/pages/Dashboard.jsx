@@ -32,7 +32,7 @@ function Dashboard() {
     <div style={{ fontFamily: "Arial, sans-serif", padding: "20px" }}>
       <h2>Public Infrastructure Dashboard</h2>
 
-      {/* Карточки со статистикой */}
+      {}
       <div style={{ display: "flex", gap: "20px", marginTop: "20px", marginBottom: "40px" }}>
         {[
           { title: "Total Reports", value: stats.total_reports },
@@ -57,7 +57,7 @@ function Dashboard() {
         ))}
       </div>
 
-      {/* Таблица проблемных школ */}
+      {}
       <h3>Organizations with Problems</h3>
       {schools.length === 0 ? (
         <p>No problematic schools</p>

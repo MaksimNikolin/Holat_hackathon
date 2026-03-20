@@ -12,10 +12,10 @@ router = APIRouter()
 @router.get("/stats")
 def get_dashboard_stats(db: Session = Depends(get_db)):
     """
-    Возвращает статистику для дашборда:
-    - total_reports: всего отчетов
-    - completed_reports: количество завершенных
-    - problem_reports: количество с проблемами
+    Returns statistics for the dashboard:
+    - total_reports: total number of reports
+    - completed_reports: number of completed reports
+    - problem_reports: number of reports with problems
     """
     total_reports = db.query(func.count(Report.id)).scalar()
     completed_reports = (
@@ -33,7 +33,7 @@ def get_dashboard_stats(db: Session = Depends(get_db)):
 @router.get("/problematic_schools")
 def get_problematic_schools(db: Session = Depends(get_db)):
     """
-    Возвращает список школ с количеством проблемных отчетов
+    Returns a list of schools with the count of problem reports
     """
     problematic = (
         db.query(School.id, School.name, func.count(Report.id).label("problem_count"))

@@ -1,4 +1,4 @@
--- Таблица организаций
+-- Table of schools
 CREATE TABLE schools (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE schools (
     photo_url TEXT
 );
 
--- Таблица обещанных улучшений
+-- Table of promised improvements
 CREATE TABLE promises (
     id SERIAL PRIMARY KEY,
     school_id INTEGER REFERENCES schools(id) ON DELETE CASCADE,
@@ -15,7 +15,7 @@ CREATE TABLE promises (
     status VARCHAR(20) DEFAULT 'Pending'
 );
 
--- Таблица отчётов граждан
+-- Table of citizen reports
 CREATE TABLE reports (
     id SERIAL PRIMARY KEY,
     school_id INTEGER REFERENCES schools(id) ON DELETE CASCADE,
@@ -24,7 +24,7 @@ CREATE TABLE reports (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
--- Таблица фото отчётов
+-- Table of report photos
 CREATE TABLE report_photos (
     id SERIAL PRIMARY KEY,
     report_id INTEGER REFERENCES reports(id) ON DELETE CASCADE,
